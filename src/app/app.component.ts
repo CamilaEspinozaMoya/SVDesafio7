@@ -13,17 +13,14 @@ export class AppComponent {
   lat = 19.4978;
   lng = -99.1269;
   geoJsonObject: Object;
+  markers = [];
 
-  markers: Marker[] = [
-    {
-      name: 'Red Barn Stores 3858-CUAJIMALPA',
-      addres: 'BOULEVARD MANUEL AVILA CAMACHO NO. 491 COL. PERIODISTAS C.P.11220',
-      lat: 40.640771,
-      lng: -74.016133,
-    },
-  ];
-
-
+  constructor(public _dataService: DataService) {
+  }
+  OnInit() {
+    this._dataService.getData()
+    .subscribe( resData => this.markers = resData);
+  }
 }
 
 interface Marker {
